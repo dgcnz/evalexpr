@@ -6,14 +6,21 @@ SRC = $(addprefix srcs/,$(addsuffix .c, $(FILES)))
 HEADER_PATH = includes
 FLAGS = -Wall -Wextra -Werror
 
-all:
+all: $(NAME)
+
+$(NAME):
 	gcc -o $(NAME) $(FLAGS) $(SRC) main.c -I$(HEADER_PATH) -L. -lft
 
 token:
-	gcc -o $(NAME) $(FLAGS) $(SRC) test_tokenizer.c -I$(HEADER_PATH) -L. -lft
+	gcc -o $(NAME) $(FLAGS) $(SRC) testing/test_tokenizer.c -I$(HEADER_PATH) -L. -lft
 
 parse:
-	gcc -o $(NAME) $(FLAGS) $(SRC) test_parser.c -I$(HEADER_PATH) -L. -lft
+	gcc -o $(NAME) $(FLAGS) $(SRC) testing/test_parser.c -I$(HEADER_PATH) -L. -lft
 
 clean:
 	/bin/rm -f $(NAME)
+
+fclean:
+	/bin/rm -f $(NAME)
+
+re: fclean all

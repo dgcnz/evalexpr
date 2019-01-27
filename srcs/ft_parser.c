@@ -6,42 +6,17 @@
 /*   By: dicanez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 14:28:44 by dicanez           #+#    #+#             */
-/*   Updated: 2019/01/27 13:23:41 by dicanez          ###   ########.fr       */
+/*   Updated: 2019/01/27 14:43:14 by dicanez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_parser.h"
-#include <stdio.h>
 
-/*
-**	   GRAMMAR
-**
-**	   expr : term (('+'| '-') term)*
-**	   term : factor (('*'| '/' | '%') factor)*
-**	   factor : INTEGER | LPAR expr RPAR
-**
-*/
-
-void		ft_eat_tkn(t_type type, t_string expression, int *pos, t_token **current_tkn)
+void		ft_eat_tkn(t_type type, t_string expression, int *pos,
+						t_token **current_tkn)
 {
 	if (type == (*current_tkn)->type)
-	{
-		printf("\t> Token {type: %d, value: %s} was eaten. yummy.\n", (*current_tkn)->type, (*current_tkn)->value);
-		fflush(stdout);
 		*current_tkn = ft_get_next_token(expression, pos);
-		return ;
-	}
-	else if (*current_tkn == NULL)
-	{
-		printf("\t> gotchu the empty token. be careful parser boy.\n");
-		fflush(stdout);
-		return ;
-	}
-	else
-	{
-		printf("\t> alert! current token didn't match expected token type. i'm calling the police.\n");
-		return ;
-	}
 }
 
 t_node		*ft_factor(t_string expression, int *pos, t_token **current_tkn)
@@ -53,7 +28,7 @@ t_node		*ft_factor(t_string expression, int *pos, t_token **current_tkn)
 	{
 		value = (*current_tkn)->value;
 		ft_eat_tkn(INTEGER, expression, pos, current_tkn);
-		return (ft_create_node(0, 0, value));
+		return (ft_create_node(NULL, NULL, value));
 	}
 	else if ((*current_tkn)->type == LPAR)
 	{
@@ -62,10 +37,15 @@ t_node		*ft_factor(t_string expression, int *pos, t_token **current_tkn)
 		ft_eat_tkn(RPAR, expression, pos, current_tkn);
 		return (node);
 	}
-	else
+	else if ((*current_tkn)->type == OP_P2)
 	{
-		return (0);
+		value = (*current_tkn)->value;
+		ft_eat_tkn(OP_P2, expression, pos, current_tkn);
+		node = ft_factor(expression, pos, current_tkn);
+		return (ft_create_node(NULL, node, value));
 	}
+	else
+		return (NULL);
 }
 
 t_node		*ft_term(t_string expression, int *pos, t_token **current_tkn)

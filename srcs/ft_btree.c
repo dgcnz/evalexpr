@@ -6,7 +6,7 @@
 /*   By: dicanez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:35:41 by dicanez           #+#    #+#             */
-/*   Updated: 2019/01/27 13:19:46 by dicanez          ###   ########.fr       */
+/*   Updated: 2019/01/27 14:33:48 by dicanez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ int		ft_btree_traverse(t_node *root, t_funptr (*ft_getfx)(t_string))
 	else
 	{
 		f = ft_getfx(root->data);
-		res_left = ft_btree_traverse(root->left, ft_getfx);
+		if (!(root->left))
+			res_left = 0;
+		else
+			res_left = ft_btree_traverse(root->left, ft_getfx);
 		res_right = ft_btree_traverse(root->right, ft_getfx);
 		return (f(res_left, res_right));
 	}

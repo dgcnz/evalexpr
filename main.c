@@ -6,7 +6,7 @@
 /*   By: dicanez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:23:28 by dicanez           #+#    #+#             */
-/*   Updated: 2019/01/26 18:44:08 by dicanez          ###   ########.fr       */
+/*   Updated: 2019/01/27 14:15:32 by dicanez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 
 int main (int ac, char **av)
 {
+	int i;
+
+	i = 1;
 	if (ac > 1)
 	{
-		ft_putnbr(eval_expr(av[1]));
-		ft_putchar('\n');
+		while (i < ac)
+		{
+			ft_putnbr(eval_expr(av[i]));
+			ft_putchar('\n');
+			++i;
+		}
 	}
 	return (0);
 }
