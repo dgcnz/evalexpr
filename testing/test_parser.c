@@ -6,14 +6,14 @@
 /*   By: dicanez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 19:04:20 by dicanez           #+#    #+#             */
-/*   Updated: 2019/01/27 06:48:49 by dicanez          ###   ########.fr       */
+/*   Updated: 2019/01/27 14:59:35 by dicanez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 #include "ft_eval.h"
 
-int main (int ac, char **av)
+int		main(int ac, char **av)
 {
 	if (ac > 1)
 	{

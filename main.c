@@ -6,14 +6,14 @@
 /*   By: dicanez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:23:28 by dicanez           #+#    #+#             */
-/*   Updated: 2019/01/27 14:15:32 by dicanez          ###   ########.fr       */
+/*   Updated: 2019/01/27 14:59:21 by dicanez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft.h"
 #include "ft_eval.h"
 
-int main (int ac, char **av)
+int		main(int ac, char **av)
 {
 	int i;
 
