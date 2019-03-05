@@ -59,7 +59,7 @@ t_node		*ft_term(t_string expression, int *pos, t_token **current_tkn)
 		value = (*current_tkn)->value;
 		ft_eat_tkn(OP_P1, expression, pos, current_tkn);
 		node = ft_create_node(node,
-				ft_term(expression, pos, current_tkn), value);
+				ft_factor(expression, pos, current_tkn), value);
 	}
 	return (node);
 }
